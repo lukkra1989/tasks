@@ -23,17 +23,12 @@ dependencies {
 	runtimeOnly 'mysql:mysql-connector-java'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-
-
 	testCompileOnly 'org.projectlombok:lombok:1.18.16'
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.16'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation ('org.springframework.boot:spring-boot-starter-test'){
 		exclude group: 'org.junit.vintage' , module: 'junit-vintage-engine'
 	}
-
-
-
 }
 
 test {
