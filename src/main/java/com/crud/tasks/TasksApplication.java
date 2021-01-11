@@ -10,14 +10,10 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 //public class TasksApplication extends SpringBootServletInitializer {
 public class TasksApplication  {
 
-//	@Override
-//	protected SpringApplicationBuilder configure(SpringApplicationBuilder application){
-//		return application.sources(TasksApplication.class);
-//	}
+    public static void main(String[] args) {
 
-	public static void main(String[] args) {
+        SpringApplication.run(TasksApplication.class, args);
+    }
 
-		SpringApplication.run(TasksApplication.class, args);
 
-	}
 }
