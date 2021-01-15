@@ -12,7 +12,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/v1/task")
-@CrossOrigin(origins = "*")
+@CrossOrigin("*")
+//@CrossOrigin(origins = "*")
 public class TaskController {
 
     private final DbService service;
@@ -31,7 +32,6 @@ public class TaskController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getTask")
-
     public TaskDto getTask(@RequestParam Long taskId) throws TaskNotFoundException {
         return taskMapper.mapToTaskDto(
                 service.getTask(taskId).orElseThrow(TaskNotFoundException::new)
