@@ -11,6 +11,7 @@ import java.net.URI;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -25,7 +26,7 @@ public class TrelloClient {
     @Value("${trello.app.token}")
     private String trelloToken;
    ////////////////////////
-    @Value("kodilla")
+    @Value("${trello.app.username}")
     private String trelloUser;
 ////////////////////////////////
 
@@ -43,12 +44,12 @@ public class TrelloClient {
 
         TrelloBoardDto[] boardsResponse = restTemplate.getForObject(url, TrelloBoardDto[].class);
 
-        if(boardsResponse != null){
-            return Arrays.asList(boardsResponse);
-            //return Optional.ofNullable(boardsResponse)
-            //   .map(Arrays::asList)
-            //   .orElse(Collections.emptyList());
-        }
-        return Collections.emptyList();//todo
+//        if(boardsResponse != null){
+//            return Arrays.asList(boardsResponse);
+            return Optional.ofNullable(boardsResponse)
+               .map(Arrays::asList)
+               .orElse(Collections.emptyList());
+//        }
+//        return Collections.emptyList();//todo
     }
 }
