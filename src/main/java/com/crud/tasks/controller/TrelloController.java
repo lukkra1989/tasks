@@ -19,6 +19,7 @@ public class TrelloController {
     @GetMapping("getTrelloBoards")
     public void getTrelloBoards(){
 
+        //GET request
         List<TrelloBoardDto> trelloBoards = trelloClient.getTrelloBoards();
 
         trelloBoards.stream()
