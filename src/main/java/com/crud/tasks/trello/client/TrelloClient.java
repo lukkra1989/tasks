@@ -1,7 +1,10 @@
 package com.crud.tasks.trello.client;
 
+import com.crud.tasks.domain.CreatedTrelloCard;
 import com.crud.tasks.domain.TrelloBoardDto;
+import com.crud.tasks.domain.TrelloCardDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -17,6 +20,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class TrelloClient {
 
+    //@Autowired
     private final RestTemplate restTemplate;
 
     @Value("${trello.api.endpoit.prod}")
@@ -25,15 +29,25 @@ public class TrelloClient {
     private String trelloAppKey;
     @Value("${trello.app.token}")
     private String trelloToken;
-    ////////////////////////
     @Value("${trello.app.username}")
     private String trelloUser;
 
     public List<TrelloBoardDto> getTrelloBoards() {
-
         URI url = prepareUrl();
 
         TrelloBoardDto[] boardsResponse = restTemplate.getForObject(url, TrelloBoardDto[].class);
+
+        UriComponentsBuilder.fromHttpUrl(trelloApiEndpoint + "/members/kodillaautor/boards")
+                .queryParam("key", trelloAppKey)
+                .queryParam("token", trelloToken)
+                .queryParam("fields", "name,id")
+                .queryParam("lists", "all")
+                .queryParam("name", trelloUser)
+                .build()
+                .encode()
+                .toUri();
+
+
 
 //        if(boardsResponse != null){
 //            return Arrays.asList(boardsResponse);
@@ -50,12 +64,24 @@ public class TrelloClient {
                 .queryParam("token", trelloToken)
                 .queryParam("fields", "name,id")
                 .queryParam("lists", "all")
-
                 .queryParam("name", trelloUser)
-
                 .build()
                 .encode()
                 .toUri();
+    }
 
+    public CreatedTrelloCard createNewCard(TrelloCardDto trelloCardDto){
+        URI url = UriComponentsBuilder.fromHttpUrl(trelloApiEndpoint + "/cards")
+             .queryParam("key", trelloAppKey)
+             .queryParam("token", trelloToken)
+             .queryParam("name", trelloCardDto.getName())
+             .queryParam("desc",trelloCardDto.getDescription())
+             .queryParam("pos", trelloCardDto.getPos())
+             .queryParam("idList",trelloCardDto.getListId())
+             .build()
+             .encode()
+             .toUri();
+
+        return restTemplate.postForObject(url, null, CreatedTrelloCard.class);
     }
 }
