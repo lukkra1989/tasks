@@ -13,7 +13,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1/task")
 @CrossOrigin("*")
-//@CrossOrigin(origins = "*")
 public class TaskController {
 
     private final DbService service;
@@ -26,7 +25,6 @@ public class TaskController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getTasks")
-    //wyciaganie z serwisu
     public List<TaskDto> getTasks() {
         return taskMapper.mapToTaskDtoList(service.getAllTasks());
     }
