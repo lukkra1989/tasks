@@ -7,6 +7,7 @@ import com.crud.tasks.trello.config.TrelloConfig;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -20,13 +21,15 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class TrelloClient {
 
-
-
-    private static final Logger LOGGER = (Logger) LoggerFactory.getLogger(TrelloClient.class);
-
+    @Autowired
+    private static final Logger LOGGER =  LoggerFactory.getLogger(TrelloClient.class);
+    @Autowired
     private final RestTemplate restTemplate;
+    @Autowired
     private final TrelloConfig trelloConfig;
+
     public List<TrelloBoardDto> getTrelloBoards() {
+
         URI url = UriComponentsBuilder.fromHttpUrl(trelloConfig.getTrelloApiEndpoint() + "/members/" + trelloConfig.getTrelloUser() + "/boards")
                 .queryParam("key", trelloConfig.getTrelloAppKey())
                 .queryParam("token", trelloConfig.getTrelloToken())
@@ -52,7 +55,7 @@ public class TrelloClient {
     }
 
     public CreatedTrelloCard createNewCard(TrelloCardDto trelloCardDto) {
-        URI url = UriComponentsBuilder.fromHttpUrl(trelloConfig.getTrelloApiEndpoint() + "/cards")
+        URI url = UriComponentsBuilder.fromHttpUrl(trelloConfig.getTrelloApiEndpoint() + "/test/")
                 .queryParam("key", trelloConfig.getTrelloAppKey())
                 .queryParam("token", trelloConfig.getTrelloToken())
                 .queryParam("name", trelloCardDto.getName())
@@ -68,13 +71,13 @@ public class TrelloClient {
 
 
 
-    //    private URI prepareUrl() {
-//        return UriComponentsBuilder.fromHttpUrl(trelloConfiig.getTrelloApiEndpoint() + "/members/kodillaautor/boards")
-//                .queryParam("key", trelloConfiig.getTrelloAppKey())
-//                .queryParam("token", trelloConfiig.getTrelloToken())
+//        private URI prepareUrl() {
+//        return UriComponentsBuilder.fromHttpUrl(trelloConfig.getTrelloApiEndpoint() + "/members/kodillaautor/boards")
+//                .queryParam("key", trelloConfig.getTrelloAppKey())
+//                .queryParam("token", trelloConfig.getTrelloToken())
 //                .queryParam("fields", "name,id")
 //                .queryParam("lists", "all")
-//                .queryParam("name", trelloConfiig.getTrelloUser())
+//                .queryParam("name", trelloConfig.getTrelloUser())
 //                .build()
 //                .encode()
 //                .toUri();

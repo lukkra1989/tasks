@@ -25,4 +25,5 @@ public class CreatedTrelloCard {
 //    @JsonProperty("badges")
 //    private Badges badges;
 
+
 }
