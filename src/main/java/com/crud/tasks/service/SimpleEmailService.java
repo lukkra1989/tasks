@@ -39,10 +39,4 @@ public class SimpleEmailService {
 
         return mailMessage;
     }
-
-//    private SimpleMailMessage homework() {
-//
-//        Optional<String> setCc = Optional.ofNullable("luk.kramarczyk@gmail.com");
-//        return homework();
-//    }
 }
