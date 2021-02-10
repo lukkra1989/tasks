@@ -16,7 +16,7 @@ import static org.mockito.Mockito.verify;
 class SimpleEmailServiceTest {
 
     @InjectMocks
-    private SimpleEmailService simpleEmailService;
+    SimpleEmailService simpleEmailService;
 
     @Mock
     private JavaMailSender javaMailSender;
@@ -24,7 +24,7 @@ class SimpleEmailServiceTest {
     @Test
     public void shouldSendEmail() {
         //Given
-        Mail mail = new Mail("test@test.com", "Test", "Test Message","luk.kramarczyk@gmail.com");
+        Mail mail= new Mail("test@test.com", "Test", "Test Message","luk.kramarczyk@gmail.com");
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(mail.getMailTo());
