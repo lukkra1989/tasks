@@ -30,7 +30,7 @@ public class SimpleEmailService {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(mail.getMailTo());
         mailMessage.setSubject(mail.getSubject());
-        mailMessage.setText(mail.getMessage());
+        //mailMessage.setText(mail.getMessage());
         mailMessage.setCc("luk.kramarczyk@gmail.com");
 
         if (mail.getToCc() != null) {
