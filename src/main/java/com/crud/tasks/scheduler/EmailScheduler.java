@@ -31,8 +31,5 @@ public class EmailScheduler {
         } else
             message = "Currently in database you got: " + size + "tasks";
 
-        simpleEmailService.send(
-                new Mail(adminConfig.getAdminMail(), SUBJECT, message, null)
-        );
     }
 }
