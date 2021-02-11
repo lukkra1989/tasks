@@ -59,7 +59,7 @@ dependencies {
     }
 
    runtimeOnly 'org.postgresql:postgresql'
-   // runtimeOnly 'mysql:mysql-connector-java'
+    //runtimeOnly 'mysql:mysql-connector-java'
     runtimeOnly 'org.webjars:jquery:3.3.1-1'
     runtimeOnly 'org.webjars:jquery-ui:1.12.1'
     runtimeOnly 'org.webjars:bootstrap:4.1.3'
