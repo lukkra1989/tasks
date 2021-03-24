@@ -31,6 +31,7 @@ repositories {
 
 dependencies {
 
+    implementation 'junit:junit:4.12'
     compile 'org.springframework.boot:spring-boot-starter-web'
 //	war {
 //		archiveName 'crud.war'
@@ -59,7 +60,7 @@ dependencies {
     }
 
    runtimeOnly 'org.postgresql:postgresql'
-    //runtimeOnly 'mysql:mysql-connector-java'
+    runtimeOnly 'mysql:mysql-connector-java'
     runtimeOnly 'org.webjars:jquery:3.3.1-1'
     runtimeOnly 'org.webjars:jquery-ui:1.12.1'
     runtimeOnly 'org.webjars:bootstrap:4.1.3'
