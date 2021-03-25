@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class TrelloClient {
 
-
     private static final Logger LOGGER =  LoggerFactory.getLogger(TrelloClient.class);
     @Autowired
     private final RestTemplate restTemplate;
