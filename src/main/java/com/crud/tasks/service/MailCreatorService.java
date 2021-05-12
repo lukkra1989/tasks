@@ -20,16 +20,16 @@ public class MailCreatorService {
     @Qualifier("templateEngine")
     private TemplateEngine templateEngine;
 
-    public String buildTrelloCardEmail(String message){
+    public String buildTrelloCardEmail(String message) {
 
-        List<String>functionality = new ArrayList<>();
-                functionality.add("You can manage your tasks");
-                functionality.add("Provides connection with Trello Account ");
-                functionality.add("Application allows sending tasks to Trello");
+        List<String> functionality = new ArrayList<>();
+        functionality.add("You can manage your tasks");
+        functionality.add("Provides connection with Trello Account ");
+        functionality.add("Application allows sending tasks to Trello");
 
-        Context context=new Context();
+        Context context = new Context();
         context.setVariable("message", message);
-       //context.setVariable("tasks_url", "https://lukkra1989.github.io/");
+        //context.setVariable("tasks_url", "https://lukkra1989.github.io/");
         context.setVariable("task_url", "http://localhost:8080");
         context.setVariable("button", "Visit website");
         context.setVariable("admin_name", adminConfig.getAdminName());
@@ -38,7 +38,7 @@ public class MailCreatorService {
         context.setVariable("is_friend", true);
         context.setVariable("admin_config", adminConfig);
         context.setVariable("application_functionality", functionality);
-        return templateEngine.process("mail/created-trello-card-mail",context);
+        return templateEngine.process("mail/created-trello-card-mail", context);
     }
 
     public String buildDailyTasksCountInfoEmail(String message) {
@@ -51,8 +51,8 @@ public class MailCreatorService {
         Context context = new Context();
         context.setVariable("preview_message", message);
         context.setVariable("message", message);
-        context.setVariable("tasks_url","http://localhost:8080/");
-        context.setVariable("button","Visit website");
+        context.setVariable("tasks_url", "http://localhost:8080/");
+        context.setVariable("button", "Visit website");
         context.setVariable("show_button", true);
         context.setVariable("admin_name", adminConfig.getAdminName());
         context.setVariable("admin_config", adminConfig);
@@ -61,6 +61,21 @@ public class MailCreatorService {
         context.setVariable("bye_message", "Thank you for using our App! We hope see you soon!");
 
         return templateEngine.process("mail/created-trello-card-mail", context);
+    }
+
+    public String buildTaskAmountEmail(String message) {
+
+        Context context = new Context();
+        context.setVariable("preview_message", message.substring(0, 30));
+        context.setVariable("message", message);
+        context.setVariable("task_url", "https://szpila127.github.io/");
+        context.setVariable("button", "Your app");
+        context.setVariable("admin_name", adminConfig.getAdminName());
+        context.setVariable("goodbye_message", adminConfig.getAdminName() + ", have a nice day ! :)");
+        context.setVariable("show_button", true);
+        context.setVariable("admin_config", adminConfig);
+        context.setVariable("company_config", adminConfig);
+        return templateEngine.process("mail/amount-of-tasks-mail", context);
     }
 
 }
